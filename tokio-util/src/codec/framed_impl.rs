@@ -191,6 +191,7 @@ where
                         err
                     })?;
                     if frame.is_none() {
+                        dbg!("FRAME IS NONE");
                         state.is_readable = false; // prepare pausing -> paused
                     }
                     // implicit pausing -> pausing or pausing -> paused
