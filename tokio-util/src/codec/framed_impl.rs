@@ -231,6 +231,7 @@ where
                 Poll::Pending => return Poll::Pending,
             };
             if bytect == 0 {
+                dbg!(state.buffer.len());
                 if state.eof {
                     dbg!("FRAMED EOF");
                     // We're already at an EOF, and since we've reached this path
