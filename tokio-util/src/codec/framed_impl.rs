@@ -231,6 +231,7 @@ where
             };
             if bytect == 0 {
                 if state.eof {
+                    dbg!("FRAMED EOF");
                     // We're already at an EOF, and since we've reached this path
                     // we're also not readable. This implies that we've already finished
                     // our `decode_eof` handling, so we can simply return `None`.
