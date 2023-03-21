@@ -111,6 +111,7 @@ mod util {
         buf: &mut B,
     ) -> Poll<io::Result<usize>> {
         if !buf.has_remaining_mut() {
+            dbg!("no remaining");
             return Poll::Ready(Ok(0));
         }
 
