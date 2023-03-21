@@ -241,7 +241,7 @@ where
                     return Poll::Ready(None);
                 }
                 // prepare reading -> paused
-                state.eof = true;
+                // state.eof = true;
             } else {
                 // prepare paused -> framing or noop reading -> framing
                 state.eof = false;
