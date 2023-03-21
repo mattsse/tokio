@@ -192,10 +192,11 @@ where
                     })?;
                     if frame.is_none() {
                         dbg!("FRAME IS NONE");
-                        state.is_readable = false; // prepare pausing -> paused
+                        // state.is_readable = false; // prepare pausing -> paused
+                    } else {
+                        // implicit pausing -> pausing or pausing -> paused
+                        return Poll::Ready(frame.map(Ok));
                     }
-                    // implicit pausing -> pausing or pausing -> paused
-                    return Poll::Ready(frame.map(Ok));
                 }
 
                 // framing
@@ -238,10 +239,10 @@ where
                     // we're also not readable. This implies that we've already finished
                     // our `decode_eof` handling, so we can simply return `None`.
                     // implicit paused -> paused
-                    return Poll::Ready(None);
+                    // return Poll::Ready(None);
                 }
                 // prepare reading -> paused
-                // state.eof = true;
+                state.eof = true;
             } else {
                 // prepare paused -> framing or noop reading -> framing
                 state.eof = false;
